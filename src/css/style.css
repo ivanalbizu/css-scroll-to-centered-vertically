@@ -1,0 +1,110 @@
+@layer reset, variables, dummy;
+@layer reset {
+  *:where(:not(html, iframe, canvas, img, svg, video):not(svg *, symbol *)) {
+    all: unset;
+    display: revert;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  ul,
+  ol {
+    margin-inline-start: 0;
+    margin-block-start: 0;
+  }
+  button,
+  a {
+    cursor: pointer;
+  }
+  button:not([class]):focus,
+  a:not([class]):focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  mark {
+    background-color: aquamarine;
+    padding-inline: 2px;
+    border-radius: 2px;
+  }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+  }
+}
+@layer variables {
+  @property --w {
+    syntax: "<length>";
+    initial-value: 100px;
+    inherits: true;
+  }
+  @property --h {
+    syntax: "<length>";
+    initial-value: 90px;
+    inherits: true;
+  }
+}
+@layer dummy {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    min-height: 250vh;
+    background: repeating-linear-gradient(to bottom, transparent, transparent calc(50vh - 1px), tomato 50vh, transparent calc(50vh + 1px), transparent 100vh);
+    background-attachment: fixed;
+  }
+  main {
+    padding-inline: 8px;
+    margin-inline: auto;
+    width: min(90%, 1024px);
+  }
+  section {
+    padding-block-end: 1.5rem;
+  }
+  p:not(:last-of-type) {
+    padding-block-end: 0.5rem;
+  }
+  .nav {
+    position: sticky;
+    top: 0;
+    display: grid;
+    place-content: center;
+    padding: clamp(1rem, 2vw + 0.5rem, 3rem) 16px;
+    background-color: rgba(0, 0, 0, 0.86);
+    z-index: 1;
+  }
+  .nav a {
+    color: #fff;
+    font-size: clamp(1rem, 3vw, 3rem);
+  }
+  .container-querie {
+    display: grid;
+    grid-template: 1fr/1fr;
+  }
+  .container-querie > * {
+    grid-area: 1/1/2/2;
+  }
+  .container-querie__size {
+    container-type: size;
+    outline: 2px solid rebeccapurple;
+    outline-offset: -2px;
+    pointer-events: none;
+    background: repeating-linear-gradient(to bottom, transparent, transparent calc(50% - 2px), rgba(22, 22, 213, 0.4) 50%, transparent calc(50% + 2px), transparent 100vh);
+  }
+  .container-querie__size > [id] {
+    --w: 100cqw;
+    --h: 100cqh;
+    --px-width: tan(atan2(var(--w), 1px));
+    --px-height: tan(atan2(var(--h), 1px));
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    scroll-margin-top: calc(50vh - var(--px-height) * 1px / 2);
+  }
+  .container-querie__content {
+    padding: 16px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
